@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="container">
+	<div class="row justify-content-center mt-5">
+			<h1>Registro de nuevo usuario</h1>
+	
+			<div class="col-10" style="float: left;">
+				<input type="text"
+					class="form-control"
+					name="txtUsuario"
+					id="txtUsuario"
+					onkeyup="chequear(this.value)"
+					autocomplete="off"
+					placeholder="Nombre de usuario">
+			</div>
+			<div class="col-2" style="float: right;">
+				<img src="" id="respuesta" width="20px" style="vertical-align:middle">
+			</div>
+			
+	
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+	function chequear(usuario){
+		
+		if (usuario.length < 5) {
+   			document.getElementById("respuesta").src = ""; //Para que no se repita y siga agregando
+    		return;
+  		}else{
+		
+			var xmlhttp = new XMLHttpRequest(); //Objeto XMLHttp
+		   
+		    xmlhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		        if(this.responseText){
+		        	document.getElementById("respuesta").src = "mal.png";
+		        }else{
+		        	document.getElementById("respuesta").src = "ok.png";
+		        }
+		      }
+		    };
+		    
+		    xmlhttp.open("GET", "cuentas.php?usuario="+usuario, true);
+		    xmlhttp.send();
+		}
+
+		
+	}
+
+</script>
+
+</body>
+</html>

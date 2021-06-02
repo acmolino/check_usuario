@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+	<input type="text" name="txtUsuario" id="txtUsuario" onkeyup="chequear(this.value)" autocomplete="off">
+	<p id="respuesta"></p>
+
+
+<script type="text/javascript">
+	function chequear(usuario){
+		if (usuario.length < 5) {
+   			document.getElementById("respuesta").innerHTML = ""; //Para que no se repita y siga agregando
+    		return;
+  		}else{
+		
+			var xmlhttp = new XMLHttpRequest(); //Objeto XMLHttp
+		   
+		    xmlhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		        document.getElementById("respuesta").innerHTML = this.responseText;
+		      }
+		    };
+		    
+		    xmlhttp.open("GET", "cuentas.php?usuario="+usuario, true);
+		    xmlhttp.send();
+		}
+	}
+
+</script>
+
+</body>
+</html>

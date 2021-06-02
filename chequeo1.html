@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+	<input type="text" name="txtUsuario" id="txtUsuario" autocomplete="off">
+	<button onclick="chequear(document.getElementById('txtUsuario').value)">Comprobar</button>
+	<p id="respuesta"></p>
+
+
+<script type="text/javascript">
+	function chequear(usuario){
+
+		var xmlhttp = new XMLHttpRequest();
+	    xmlhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	        document.getElementById("respuesta").innerHTML = this.responseText;
+	      }
+	    };
+	    xmlhttp.open("GET", "cuentas.php?usuario="+usuario, true);
+	    xmlhttp.send();
+	}
+
+</script>
+
+</body>
+</html>
